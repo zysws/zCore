@@ -1,0 +1,4 @@
+name: zCore
+version: '1.0'
+main: org.zysw.zCore.src.ZCore
+api-version: '1.21'

@@ -2,3 +2,15 @@ name: zCore
 version: '1.0'
 main: org.zysw.zCore.src.ZCore
 api-version: '1.21'
+
+commands:
+  sethome:
+    description: Set your current location as a home.
+    usage: /sethome <name>
+    permission: zCore.sethome
+    permission-message: You don't have permission to set a home.
+
+permissions:
+  zCore.sethome:
+    description: Allows the player to set homes.
+    default: true

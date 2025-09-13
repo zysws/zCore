@@ -35,14 +35,27 @@ public class YAMLFileManager {
         }
     }
 
-    public void set(String path, Object value) {
-        config.set(path, value);
-        save();
+    public void set(File ymlFile, String path, Object value) {
+        try {
+            YamlConfiguration cfg = YamlConfiguration.loadConfiguration(ymlFile);
+            cfg.set(path, value);
+            cfg.save(ymlFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public Object get(String path) {
-        return config.get(path);
+
+    public Object get(File ymlFile, String path) {
+        try {
+            YamlConfiguration cfg = YamlConfiguration.loadConfiguration(ymlFile);
+            return cfg.get(path);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
+
 
     public static YAMLFileManager getInstance() {
         return INSTANCE;

@@ -13,27 +13,26 @@ import org.zysw.zCore.src.utils.GetPlayerData;
 import java.util.Map;
 import java.util.UUID;
 
-public class SetHomeExecutor implements CommandExecutor {
-
+public class HomeExecutor implements CommandExecutor {
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
 
         if (!(sender instanceof Player player)) {
             sender.sendMessage("Only players can use this command.");
             return true;
         }
 
-        Location location = player.getLocation();
         UUID uuid = player.getUniqueId();
 
+        Location homeLocation = (Location) GetPlayerData.getInstance().getData(uuid, "homes.home");
 
-        GetPlayerData.getInstance().saveData(uuid, "homes.home", location);
-
-        Map<String, String> placeholders = Map.of(
-                "cords", location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ()
-        );
-
-        player.sendMessage(ConvertStringToComponent.convert(ZCore.getInstance().getConfig().getString("home-settings.set-home.message"), placeholders));
+        if (homeLocation == null) {
+            player.sendMessage("You don't have a home set.");
+        } else {
+            Map<String, String> placeholders = Map.of();
+            player.sendMessage(ConvertStringToComponent.convert(ZCore.getInstance().getConfig().getString("home-settings.home.message"), placeholders));
+            player.teleport(homeLocation);
+        }
 
 
         return true;

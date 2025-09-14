@@ -1,6 +1,7 @@
 package org.zysw.zCore.src;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.zysw.zCore.src.player.commands.HomeExecutor;
 import org.zysw.zCore.src.player.commands.SetHomeExecutor;
 
 import java.io.File;
@@ -24,6 +25,7 @@ public final class ZCore extends JavaPlugin {
         }
 
         getCommand("sethome").setExecutor(new SetHomeExecutor());
+        getCommand("home").setExecutor(new HomeExecutor());
     }
 
     @Override

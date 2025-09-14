@@ -6,11 +6,21 @@ api-version: '1.21'
 commands:
   sethome:
     description: Set your current location as a home.
-    usage: /sethome <name>
+    usage: /sethome
     permission: zCore.sethome
     permission-message: You don't have permission to set a home.
+
+  home:
+    description: Teleport's you to your home.
+    usage: /home
+    permission: zCore.home
+    permission-message: You don't have permission to teleport to home.
 
 permissions:
   zCore.sethome:
     description: Allows the player to set homes.
+    default: true
+
+  zCore.home:
+    description: Allows the player to teleport to their home.
     default: true

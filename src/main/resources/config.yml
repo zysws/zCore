@@ -17,6 +17,11 @@
 #  <gold>
 
 
-set-home-settings:
-  max-homes: 1
-  message: "Home has been set to: <green><cords>"
+
+home-settings:
+  set-home:
+    message: "Home has been set to: <green><cords>"
+
+  home:
+    message: "Teleported to your <green>home!"
+

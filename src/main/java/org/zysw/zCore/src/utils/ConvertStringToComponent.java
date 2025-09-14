@@ -2,6 +2,7 @@ package org.zysw.zCore.src.utils;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import org.zysw.zCore.src.ZCore;
 
 import java.util.HashMap;
@@ -12,7 +13,8 @@ import java.util.regex.Pattern;
 public class ConvertStringToComponent {
     private static final ConvertStringToComponent INSTANCE = new ConvertStringToComponent();
 
-    private static final Pattern TAG_PATTERN = Pattern.compile("<([a-zA-Z0-9_-]+)>");
+    // Pattern updated to also match hex colors like <#FFFFFF>
+    private static final Pattern TAG_PATTERN = Pattern.compile("<(#?[a-zA-Z0-9_-]+)>");
     private static final Map<String, NamedTextColor> COLOR_MAP = new HashMap<>();
 
     // global variables stored as strings
@@ -34,7 +36,7 @@ public class ConvertStringToComponent {
     // convert a string with string placeholders to a component
     public static Component convert(String input, Map<String, String> placeholders) {
         Component result = Component.empty();
-        NamedTextColor currentColor = NamedTextColor.WHITE;
+        TextColor currentColor = NamedTextColor.WHITE;
 
         if (input == null) return result;
 
@@ -52,20 +54,31 @@ public class ConvertStringToComponent {
                 result = result.append(Component.text(textBefore, currentColor));
             }
 
-            String tag = matcher.group(1).toLowerCase();
+            String tag = matcher.group(1);
 
-            if (COLOR_MAP.containsKey(tag)) {
-                currentColor = COLOR_MAP.get(tag);
-            } else if (combinedPlaceholders.containsKey(tag)) {
-                // recursively parse placeholder value
-                String value = combinedPlaceholders.get(tag);
-                Component valueComponent = convert(value, combinedPlaceholders);
-                if (valueComponent.color() == null) {
-                    valueComponent = valueComponent.color(currentColor);
+            if (tag.startsWith("#") && tag.length() == 7) {
+                // Hex color support
+                try {
+                    currentColor = TextColor.fromHexString(tag);
+                } catch (IllegalArgumentException e) {
+                    // Invalid hex, ignore or fallback
                 }
-                result = result.append(valueComponent);
             } else {
-                result = result.append(Component.text("<" + tag + ">", currentColor));
+                String lowerTag = tag.toLowerCase();
+
+                if (COLOR_MAP.containsKey(lowerTag)) {
+                    currentColor = COLOR_MAP.get(lowerTag);
+                } else if (combinedPlaceholders.containsKey(lowerTag)) {
+                    // recursively parse placeholder value
+                    String value = combinedPlaceholders.get(lowerTag);
+                    Component valueComponent = convert(value, combinedPlaceholders);
+                    if (valueComponent.color() == null) {
+                        valueComponent = valueComponent.color(currentColor);
+                    }
+                    result = result.append(valueComponent);
+                } else {
+                    result = result.append(Component.text("<" + tag + ">", currentColor));
+                }
             }
 
             lastEnd = matcher.end();
@@ -82,7 +95,7 @@ public class ConvertStringToComponent {
     // convert a string with component placeholders to a component
     public static Component convertWithComponents(String input, Map<String, Component> placeholders) {
         Component result = Component.empty();
-        NamedTextColor currentColor = NamedTextColor.WHITE;
+        TextColor currentColor = NamedTextColor.WHITE;
 
         if (input == null) return result;
 
@@ -105,16 +118,27 @@ public class ConvertStringToComponent {
                 result = result.append(Component.text(textBefore, currentColor));
             }
 
-            String tag = matcher.group(1).toLowerCase();
+            String tag = matcher.group(1);
 
-            if (COLOR_MAP.containsKey(tag)) {
-                currentColor = COLOR_MAP.get(tag);
-            } else if (combinedPlaceholders.containsKey(tag)) {
-                Component comp = combinedPlaceholders.get(tag);
-                if (comp.color() == null) comp = comp.color(currentColor);
-                result = result.append(comp);
+            if (tag.startsWith("#") && tag.length() == 7) {
+                // Hex color support
+                try {
+                    currentColor = TextColor.fromHexString(tag);
+                } catch (IllegalArgumentException e) {
+                    // Invalid hex, ignore or fallback
+                }
             } else {
-                result = result.append(Component.text("<" + tag + ">", currentColor));
+                String lowerTag = tag.toLowerCase();
+
+                if (COLOR_MAP.containsKey(lowerTag)) {
+                    currentColor = COLOR_MAP.get(lowerTag);
+                } else if (combinedPlaceholders.containsKey(lowerTag)) {
+                    Component comp = combinedPlaceholders.get(lowerTag);
+                    if (comp.color() == null) comp = comp.color(currentColor);
+                    result = result.append(comp);
+                } else {
+                    result = result.append(Component.text("<" + tag + ">", currentColor));
+                }
             }
 
             lastEnd = matcher.end();

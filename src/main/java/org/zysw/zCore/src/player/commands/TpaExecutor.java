@@ -18,6 +18,7 @@ import org.zysw.zCore.src.utils.TpaManager;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TpaExecutor implements TabExecutor, CommandExecutor {
     @Override
@@ -81,7 +82,15 @@ public class TpaExecutor implements TabExecutor, CommandExecutor {
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (args.length == 1) {
+            return Bukkit.getOnlinePlayers().stream()
+                    .map(Player::getName)
+                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+
         return List.of();
     }
+
 }

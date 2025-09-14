@@ -1,39 +1,33 @@
 package org.zysw.zCore.src.player.commands;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.Location;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.zysw.zCore.src.ZCore;
 import org.zysw.zCore.src.utils.ConvertStringToComponent;
 
 import java.util.List;
-import java.util.Map;
 
-public class SetSpawnExecutor implements CommandExecutor, TabExecutor {
+public class AnnounceExecutor implements CommandExecutor, TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-
-        if (!(sender instanceof Player player)) {
-            sender.sendMessage("Only players can use this command.");
-            return true;
+        if (args.length == 0) {
+            sender.sendMessage("usage: /announce <message>");
         }
 
-        Location playerLocation = player.getLocation();
+        Component prefix = ConvertStringToComponent.convertWithComponents((String) ZCore.getInstance().getConfig().getString("global.announcement-prefix"), null);
 
+        String joinedArgs = String.join(" ", args);
+        Component message = ConvertStringToComponent.convertWithComponents(joinedArgs, null);
 
-        ZCore.getInstance().getConfig().set("global.spawn.location", playerLocation);
+        Component finalMessage = prefix.append(Component.text(" ")).append(message);
 
-        Map<String, Component> placeholders = Map.of(
-                "cords", Component.text(playerLocation.getBlockX() + ", " + playerLocation.getBlockY() + ", " + playerLocation.getBlockZ())
-        );
-        player.sendMessage(ConvertStringToComponent.convertWithComponents(ZCore.getInstance().getConfig().getString("spawn-settings.set-spawn.message"), placeholders));
-
+        Bukkit.broadcast(finalMessage);
 
         return true;
     }

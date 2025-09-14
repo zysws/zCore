@@ -1,4 +1,4 @@
-package org.zysw.zCore.src.core;
+package org.zysw.zCore.src.utils;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 

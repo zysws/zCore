@@ -47,6 +47,29 @@ commands:
     permission: zCore.tpaDecline
     permission-message: You don't have permission to decline tpa requests
 
+  announce:
+    description: Sends an announcement to chat
+    usage: /announce <message>
+    permission: zCore.announce
+    permission-message: You don't have permission to send announcements!
+
+  rtp:
+    description: Teleport's you to a random location
+    usage: /rtp
+    permission: zCore.rtp
+    permission-message: You don't have permission to teleport to a random location!
+
+  invsee:
+    description: Views another player's inventory
+    usage: /invsee <player>
+    permission: zCore.invsee
+    permission-message: You don't have permission to view another player's inventory
+
+  endersee:
+    description: Views another player's enderchest
+    usage: /endersee <player>
+    permission: zCore.endersee
+    permission-message: You don't have permission to view another player's enderchest
 
 
 permissions:
@@ -83,3 +106,19 @@ permissions:
   zCore.tpa:
     description: Allows player to send a tpa request to other players
     default: true
+
+  zCore.announce:
+    description: Allows player to announce a message in chat
+    default: op
+
+  zCore.rtp:
+    description: Allows player to teleport to random location
+    default: true
+
+  zCore.enderSee:
+    description: Allows player to view another's player ender chest
+    default: op
+
+  zCore.invSee:
+    description: Allows player to view another's player inventory
+    default: op

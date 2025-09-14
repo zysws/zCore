@@ -1,20 +1,22 @@
 #  colors
-#  <black>
-#  <dark_blue>
-#  <dark_green>
-#  <dark_aqua>
-#  <dark_red>
-#  <dark_purple>
-#  <gold>
-#  <gray>
-#  <blue>
-#  <green>
-#  <aqua>
-#  <red>
-#  <light_purple>
-#  <yellow>
-#  <white>
-#  <gold>
+#   <black>
+#   <dark_blue>
+#   <dark_green>
+#   <dark_aqua>
+#   <dark_red>
+#   <dark_purple>
+#   <gold>
+#   <gray>
+#   <blue>
+#   <green>
+#   <aqua>
+#   <red>
+#   <light_purple>
+#   <yellow>
+#   <white>
+#   <gold>
+
+# hex colors are also supported
 
 global:
   variables: # everything below variables, u can use as a variable in a message, example: <server-name>. you can also apply colors here.
@@ -26,22 +28,33 @@ global:
   cooldown-message: "You are currently on cooldown! Wait <time-left> seconds before using this command."
 
 
+  join-message: "<white>[<server-name><white>] <gold><player> <white>has <green>joined <white>the server!"
+  quit-message: "<white>[<server-name><white>] <gold><player> <white>has <red>left <white>the server."
+
+  defaultMinecraftJoinMessage: false # has to be lower case, either "true" or "false"
+  defaultMinecraftQuitMessage: false
+
+  autoformatchat: true # automatically formats any hex color or minecraft color code to appear in the message
+
+  announcement-prefix: "[<gold>Announcement<white>]" # the prefix that goes before the message, example: [Announcement] Server is restarting in 5 minutes!
+
+
 
 
 
 home-settings:
   set-home:
-    message: "Home has been set to: <green><cords>"
+    message: "<white>[<server-name><white>] Home has been set to: <green><cords>"
 
   home:
-    message: "Teleported to your <green>home!"
+    message: "<white>[<server-name><white>] Teleported to your <green>home!"
 
 spawn-settings:
   spawn:
-    message: "Teleported to <green>spawn!"
+    message: "<white>[<server-name><white>] Teleported to <green>spawn!"
 
   set-spawn:
-    message: "Spawn has been set to: <green><cords>"
+    message: "<white>[<server-name><white>] Spawn has been set to: <green><cords>"
 
 tpa-settings:
   no-requests-message: "<white>[<server-name><white>] You don't have any pending teleport requests."
@@ -58,3 +71,7 @@ tpa-settings:
   tpadecline:
     target-player-message: "<white>[<server-name><white>] Teleport request <red>denied!"
     requester-message: "<white>[<server-name><white>] <gold><targetplayer> has <red>denied <white>your tpa request!"
+
+rtp-settings:
+  searching-message: "<white>[<server-name><white>] <yellow>Searching for a safe location..."
+  found-message: "<white>[<server-name><white>] <green>You have been teleported to a safe location!"

@@ -3,6 +3,7 @@ package org.zysw.zCore.src;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.zysw.zCore.src.core.AutoFormatChat;
 import org.zysw.zCore.src.core.JoinAndQuitManager;
+import org.zysw.zCore.src.core.UpdateCheckerListener;
 import org.zysw.zCore.src.player.commands.*;
 
 import java.io.File;
@@ -45,6 +46,9 @@ public final class ZCore extends JavaPlugin {
         if (autoformatchat) {
             getServer().getPluginManager().registerEvents(new AutoFormatChat(), this);
         }
+
+        getServer().getPluginManager().registerEvents(new UpdateCheckerListener(this), this);
+
     }
 
     @Override

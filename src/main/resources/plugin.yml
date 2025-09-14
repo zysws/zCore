@@ -29,9 +29,28 @@ commands:
     permission: zCore.spawn
     permission-message: You don't have permission to teleport to spawn
 
+  tpa:
+    description: Sends a tpa request to a other player
+    usage: /tpa <player>
+    permission: zCore.tpa
+    permission-message: You don't have permission to send a tpa request
+
+  tpaccept:
+    description: Accepts the tpa request from a other player
+    usage: /tpaccept
+    permission: zCore.tpAccept
+    permission-message: You don't have permission to accept tpa requests
+
+  tpadeny:
+    description: Declines the tpa request from a other player
+    usage: /tpadeny
+    permission: zCore.tpaDecline
+    permission-message: You don't have permission to decline tpa requests
+
 
 
 permissions:
+
   zCore.setHome:
     description: Allows the player to set homes.
     default: true
@@ -47,5 +66,20 @@ permissions:
 
 
   zCore.spawn:
-    description: Allows the player to teleport to spanw
+    description: Allows the player to teleport to spawn
+    default: true
+
+
+  zCore.tpAccept:
+    description: Allows player to accept the tpa request
+    default: true
+
+
+  zCore.tpaDeny:
+    description: Allows player to decline the tpa request
+    default: true
+
+
+  zCore.tpa:
+    description: Allows player to send a tpa request to other players
     default: true

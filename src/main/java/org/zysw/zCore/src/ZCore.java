@@ -1,10 +1,7 @@
 package org.zysw.zCore.src;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.zysw.zCore.src.player.commands.HomeExecutor;
-import org.zysw.zCore.src.player.commands.SetHomeExecutor;
-import org.zysw.zCore.src.player.commands.SetSpawnExecutor;
-import org.zysw.zCore.src.player.commands.SpawnExecutor;
+import org.zysw.zCore.src.player.commands.*;
 
 import java.io.File;
 
@@ -30,6 +27,9 @@ public final class ZCore extends JavaPlugin {
         getCommand("home").setExecutor(new HomeExecutor());
         getCommand("setspawn").setExecutor(new SetSpawnExecutor());
         getCommand("spawn").setExecutor(new SpawnExecutor());
+        getCommand("tpa").setExecutor(new TpaExecutor());
+        getCommand("tpaccept").setExecutor(new TpaAcceptExecutor());
+        getCommand("tpadeny").setExecutor(new TpaDenyExecutor());
     }
 
     @Override

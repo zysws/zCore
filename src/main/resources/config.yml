@@ -17,8 +17,15 @@
 #  <gold>
 
 global:
+  variables: # everything below variables, u can use as a variable in a message, example: <server-name>. you can also apply colors here.
+    server-name: "<gray>localhost"
+
   spawn:
     location:
+
+  cooldown-message: "You are currently on cooldown! Wait <time-left> seconds before using this command."
+
+
 
 
 
@@ -35,3 +42,19 @@ spawn-settings:
 
   set-spawn:
     message: "Spawn has been set to: <green><cords>"
+
+tpa-settings:
+  no-requests-message: "<white>[<server-name><white>] You don't have any pending teleport requests."
+  no-longer-online-message: "<white>[<server-name><white>] The player who requested to teleport is no longer online."
+
+  tpa:
+    target-player-message: "<white>[<server-name><white>] <gold><requester> <white>wants to teleport to you! <green><accept> <white>or <red><decline>"
+    requester-message: "<white>[<server-name><white>] Sent tpa request to <gold><targetplayer>!"
+
+  tpaccept:
+    target-player-message: "<white>[<server-name><white>] You accepted the teleport request from <gold><requester>"
+    requester-message: "<white>[<server-name><white>] <gold><targetplayer> has <green>accepted <white>your tpa request!"
+
+  tpadecline:
+    target-player-message: "<white>[<server-name><white>] Teleport request <red>denied!"
+    requester-message: "<white>[<server-name><white>] <gold><targetplayer> has <red>denied <white>your tpa request!"

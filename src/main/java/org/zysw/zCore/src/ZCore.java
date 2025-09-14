@@ -3,6 +3,8 @@ package org.zysw.zCore.src;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.zysw.zCore.src.player.commands.HomeExecutor;
 import org.zysw.zCore.src.player.commands.SetHomeExecutor;
+import org.zysw.zCore.src.player.commands.SetSpawnExecutor;
+import org.zysw.zCore.src.player.commands.SpawnExecutor;
 
 import java.io.File;
 
@@ -26,11 +28,13 @@ public final class ZCore extends JavaPlugin {
 
         getCommand("sethome").setExecutor(new SetHomeExecutor());
         getCommand("home").setExecutor(new HomeExecutor());
+        getCommand("setspawn").setExecutor(new SetSpawnExecutor());
+        getCommand("spawn").setExecutor(new SpawnExecutor());
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        saveConfig();
     }
 
     public static ZCore getInstance() {

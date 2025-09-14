@@ -16,6 +16,10 @@
 #  <white>
 #  <gold>
 
+global:
+  spawn:
+    location:
+
 
 
 home-settings:
@@ -25,3 +29,9 @@ home-settings:
   home:
     message: "Teleported to your <green>home!"
 
+spawn-settings:
+  spawn:
+    message: "Teleported to <green>spawn!"
+
+  set-spawn:
+    message: "Spawn has been set to: <green><cords>"

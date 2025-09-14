@@ -7,7 +7,7 @@ commands:
   sethome:
     description: Set your current location as a home.
     usage: /sethome
-    permission: zCore.sethome
+    permission: zCore.setHome
     permission-message: You don't have permission to set a home.
 
   home:
@@ -16,11 +16,36 @@ commands:
     permission: zCore.home
     permission-message: You don't have permission to teleport to home.
 
+  setspawn:
+    description: Set your current location as spawn.
+    usage: /setspawn
+    permission: zCore.setSpawn
+    permission-message: You don't have permission to set spawn
+
+
+  spawn:
+    description: Teleport's you to spawn
+    usage: /spawn
+    permission: zCore.spawn
+    permission-message: You don't have permission to teleport to spawn
+
+
+
 permissions:
-  zCore.sethome:
+  zCore.setHome:
     description: Allows the player to set homes.
     default: true
 
   zCore.home:
     description: Allows the player to teleport to their home.
+    default: true
+
+
+  zCore.setSpawn:
+    description: Allows the player to set spawn
+    default: op
+
+
+  zCore.spawn:
+    description: Allows the player to teleport to spanw
     default: true

@@ -3,7 +3,7 @@
 # zCore
 
 [![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/project/zcore_)
-[![Spigot](https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/cozy/available/spigot_vector.svg)](https://www.spigotmc.org/resources/multiverse-core.390/)
+[![Spigot](https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/cozy/available/spigot_vector.svg)](https://www.spigotmc.org/resources/zcore.128843/)
 
 [![Version](https://img.shields.io/badge/version-%201.0-blue)](https://github.com/zysws/zCore/releases)
 [![Discord](https://img.shields.io/discord/1416861089072943169.svg?label=discord&logo=discord)](https://discord.gg/XbrtmjAhh7)
